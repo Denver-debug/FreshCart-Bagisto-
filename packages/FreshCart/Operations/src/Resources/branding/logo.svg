@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="36" viewBox="0 0 160 36" role="img" aria-label="FreshCart">
+  <title>FreshCart</title>
+  <g fill="none" fill-rule="evenodd">
+    <path d="M4 9h4l3.2 14.2a2 2 0 0 0 2 1.6h13.6a2 2 0 0 0 1.9-1.5L31.5 13H10" stroke="#16a34a" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="14.5" cy="30" r="2.4" fill="#16a34a"/>
+    <circle cx="26" cy="30" r="2.4" fill="#16a34a"/>
+    <path d="M21 12.5c0-4.6 3.2-7.6 8-8-0.3 4.7-3.4 7.7-8 8z" fill="#84cc16"/>
+  </g>
+  <text x="40" y="25" font-family="Poppins, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#16a34a">Fresh<tspan fill="#f97316">Cart</tspan></text>
+</svg>
