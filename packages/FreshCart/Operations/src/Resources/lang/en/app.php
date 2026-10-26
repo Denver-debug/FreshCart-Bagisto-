@@ -17,6 +17,15 @@ return [
         'title' => 'Operations',
         'info' => 'FreshCart approval thresholds, receiving tolerance, alerts and retirement criteria.',
 
+        'approvals' => [
+            'title' => 'Approvals',
+            'info' => 'Self-approval policy and second-level approval thresholds.',
+            'general' => 'Approval Policy',
+            'general-info' => 'Rules applied to every approval decision.',
+            'allow-self-approval' => 'Allow Self Approval',
+            'allow-self-approval-info' => 'When off, users can never approve documents they raised.',
+        ],
+
         'inventory' => [
             'title' => 'Inventory Alerts',
             'info' => 'Low-stock threshold defaults and alert frequency.',
@@ -28,6 +37,14 @@ return [
             'cooldown-hours-info' => 'A product/location is alerted again only after this many hours.',
         ],
 
+        'notifications' => [
+            'title' => 'Notifications',
+            'info' => 'Delivery channels for operations alerts.',
+            'general' => 'Channels',
+            'general-info' => 'In-system notifications are always recorded.',
+            'email-enabled' => 'Also Send E-mail',
+            'email-enabled-info' => 'Requires working Bagisto mail settings (Configure → Emails). Delivery depends on the mail server.',
+        ],
     ],
 
     'errors' => [
@@ -39,6 +56,11 @@ return [
         'insufficient-lot-stock' => 'The selected batch of :sku has only :available unit(s).',
         'insufficient-held-stock' => 'Only :available unit(s) of :sku are in :bucket; :requested requested.',
         'quantity-must-be-positive' => 'Quantity must be greater than zero.',
+        'remarks-required' => 'Remarks are required for this decision.',
+        'invalid-status' => 'This action is not allowed while the document is :status.',
+        'approval-not-permitted' => 'You do not have authority to take this approval decision.',
+        'self-approval' => 'You cannot approve or reject a document you raised.',
+        'already-approved' => 'You already approved this document; another approver must take the next level.',
         'not-editable' => 'Only drafts can be edited.',
         'no-items' => 'Add at least one line with a quantity.',
         'unknown-sku' => 'Unknown SKU or location code.',
@@ -126,6 +148,19 @@ return [
         'campaign_scheduled' => 'Scheduled (catalog rule created)',
         'expired' => 'Expired',
         'applied' => 'Applied',
+    ],
+
+    'documents' => [
+    ],
+
+    'notifications' => [
+        'title' => 'Notifications',
+        'mark-all-read' => 'Mark all as read',
+        'empty' => 'No notifications.',
+        'approval-pending' => ':document is waiting for your approval.',
+        'approval-pending-level2' => ':document needs a second-level approval.',
+        'approved' => ':document was approved.',
+        'rejected' => ':document was rejected.',
     ],
 
     'ledger' => [

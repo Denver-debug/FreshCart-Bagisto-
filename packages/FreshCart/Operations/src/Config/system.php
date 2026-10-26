@@ -11,6 +11,26 @@ return [
         'info' => 'operations::app.configuration.info',
         'sort' => 9,
     ], [
+        'key' => 'operations.approvals',
+        'name' => 'operations::app.configuration.approvals.title',
+        'info' => 'operations::app.configuration.approvals.info',
+        'icon' => 'settings/order.svg',
+        'sort' => 1,
+    ], [
+        'key' => 'operations.approvals.general',
+        'name' => 'operations::app.configuration.approvals.general',
+        'info' => 'operations::app.configuration.approvals.general-info',
+        'sort' => 1,
+        'fields' => [
+            [
+                'name' => 'allow_self_approval',
+                'title' => 'operations::app.configuration.approvals.allow-self-approval',
+                'info' => 'operations::app.configuration.approvals.allow-self-approval-info',
+                'type' => 'boolean',
+                'default' => false,
+            ],
+        ],
+    ], [
         'key' => 'operations.inventory',
         'name' => 'operations::app.configuration.inventory.title',
         'info' => 'operations::app.configuration.inventory.info',
@@ -36,6 +56,26 @@ return [
                 'type' => 'number',
                 'default' => 24,
                 'validation' => 'integer|min:1',
+            ],
+        ],
+    ], [
+        'key' => 'operations.notifications',
+        'name' => 'operations::app.configuration.notifications.title',
+        'info' => 'operations::app.configuration.notifications.info',
+        'icon' => 'settings/email.svg',
+        'sort' => 7,
+    ], [
+        'key' => 'operations.notifications.general',
+        'name' => 'operations::app.configuration.notifications.general',
+        'info' => 'operations::app.configuration.notifications.general-info',
+        'sort' => 1,
+        'fields' => [
+            [
+                'name' => 'email_enabled',
+                'title' => 'operations::app.configuration.notifications.email-enabled',
+                'info' => 'operations::app.configuration.notifications.email-enabled-info',
+                'type' => 'boolean',
+                'default' => false,
             ],
         ],
     ],

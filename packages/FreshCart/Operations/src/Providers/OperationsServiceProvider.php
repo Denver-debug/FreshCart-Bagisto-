@@ -3,8 +3,11 @@
 namespace FreshCart\Operations\Providers;
 
 use FreshCart\Operations\Listeners\ProductInventoryObserver;
+use FreshCart\Operations\Services\ApprovalService;
+use FreshCart\Operations\Services\NotificationService;
 use FreshCart\Operations\Services\ReferenceService;
 use FreshCart\Operations\Services\StockLedgerService;
+use FreshCart\Operations\Support\DocumentRegistry;
 use FreshCart\Operations\Support\LocationScope;
 use FreshCart\Operations\Support\ProductCatalog;
 use FreshCart\Operations\Support\Settings;
@@ -27,8 +30,11 @@ class OperationsServiceProvider extends ServiceProvider
             Settings::class,
             LocationScope::class,
             ProductCatalog::class,
+            DocumentRegistry::class,
             ReferenceService::class,
             StockLedgerService::class,
+            ApprovalService::class,
+            NotificationService::class,
         ] as $singleton) {
             $this->app->singleton($singleton);
         }
