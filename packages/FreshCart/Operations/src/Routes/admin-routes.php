@@ -11,6 +11,7 @@ use FreshCart\Operations\Http\Controllers\Admin\ProductLookupController;
 use FreshCart\Operations\Http\Controllers\Admin\Quality\AdjustmentController;
 use FreshCart\Operations\Http\Controllers\Admin\Quality\IncidentController;
 use FreshCart\Operations\Http\Controllers\Admin\Quality\SupplierReturnController;
+use FreshCart\Operations\Http\Controllers\Admin\ReportController;
 use FreshCart\Operations\Http\Controllers\Admin\Retirement\CandidateController;
 use FreshCart\Operations\Http\Controllers\Admin\Retirement\DisposalController;
 use FreshCart\Operations\Http\Controllers\Admin\Setup\LocationController;
@@ -216,4 +217,23 @@ Route::group([
         Route::post('{id}/cancel', 'cancel')->name('admin.operations.price_changes.cancel');
     });
 
+    /**
+     * Reports.
+     */
+    Route::controller(ReportController::class)->prefix('reports')->group(function () {
+        Route::get('', 'index')->name('admin.operations.reports.index');
+        Route::get('ledger', 'ledger')->name('admin.operations.reports.ledger');
+        Route::get('low-stock', 'lowStock')->name('admin.operations.reports.low_stock');
+        Route::get('valuation', 'valuation')->name('admin.operations.reports.valuation');
+        Route::get('receiving-discrepancies', 'receivingDiscrepancies')->name('admin.operations.reports.receiving_discrepancies');
+        Route::get('supplier-performance', 'supplierPerformance')->name('admin.operations.reports.supplier_performance');
+        Route::get('transfers', 'transfers')->name('admin.operations.reports.transfers');
+        Route::get('adjustments', 'adjustments')->name('admin.operations.reports.adjustments');
+        Route::get('held-stock', 'heldStock')->name('admin.operations.reports.held_stock');
+        Route::get('recurring-incidents', 'recurringIncidents')->name('admin.operations.reports.recurring_incidents');
+        Route::get('disposals', 'disposals')->name('admin.operations.reports.disposals');
+        Route::get('expiry', 'expiry')->name('admin.operations.reports.expiry');
+        Route::get('branch-sales', 'branchSales')->name('admin.operations.reports.branch_sales');
+        Route::get('promotion-performance', 'promotionPerformance')->name('admin.operations.reports.promotion_performance');
+    });
 });

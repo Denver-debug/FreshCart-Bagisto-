@@ -375,6 +375,59 @@ return [
     ],
 
     /**
+     * Reports.
+     */
+    [
+        'key' => 'operations.reports',
+        'name' => 'operations::app.acl.reports',
+        'route' => ['admin.operations.reports.index'],
+        'sort' => 14,
+    ], [
+        'key' => 'operations.reports.inventory',
+        'name' => 'operations::app.acl.report-inventory',
+        'route' => [
+            'admin.operations.reports.ledger',
+            'admin.operations.reports.low_stock',
+            'admin.operations.reports.transfers',
+            'admin.operations.reports.expiry',
+        ],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.reports.procurement',
+        'name' => 'operations::app.acl.report-procurement',
+        'route' => [
+            'admin.operations.reports.receiving_discrepancies',
+            'admin.operations.reports.supplier_performance',
+        ],
+        'sort' => 2,
+    ], [
+        'key' => 'operations.reports.quality',
+        'name' => 'operations::app.acl.report-quality',
+        'route' => [
+            'admin.operations.reports.held_stock',
+            'admin.operations.reports.recurring_incidents',
+        ],
+        'sort' => 3,
+    ], [
+        'key' => 'operations.reports.finance',
+        'name' => 'operations::app.acl.report-finance',
+        'route' => [
+            'admin.operations.reports.valuation',
+            'admin.operations.reports.adjustments',
+            'admin.operations.reports.disposals',
+        ],
+        'sort' => 4,
+    ], [
+        'key' => 'operations.reports.sales',
+        'name' => 'operations::app.acl.report-sales',
+        'route' => [
+            'admin.operations.reports.branch_sales',
+            'admin.operations.reports.promotion_performance',
+        ],
+        'sort' => 5,
+    ],
+
+    /**
      * Cross-cutting authorities.
      */
     [
