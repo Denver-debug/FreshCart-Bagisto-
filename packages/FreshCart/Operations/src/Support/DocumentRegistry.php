@@ -2,6 +2,7 @@
 
 namespace FreshCart\Operations\Support;
 
+use FreshCart\Operations\Models\PurchaseRequest;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
 
@@ -11,6 +12,11 @@ use InvalidArgumentException;
 class DocumentRegistry
 {
     const DOCUMENTS = [
+        'purchase_requests' => [
+            'model' => PurchaseRequest::class,
+            'route' => 'admin.operations.purchase_requests.view',
+            'threshold' => 'purchase_requests',
+        ],
     ];
 
     public function get(string $key): array

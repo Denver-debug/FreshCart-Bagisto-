@@ -30,6 +30,26 @@ return [
         'route' => [],
         'sort' => 2,
     ], [
+        'key' => 'operations.setup.suppliers',
+        'name' => 'operations::app.acl.suppliers',
+        'route' => ['admin.operations.suppliers.index'],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.setup.suppliers.create',
+        'name' => 'operations::app.acl.create',
+        'route' => ['admin.operations.suppliers.create', 'admin.operations.suppliers.store'],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.setup.suppliers.edit',
+        'name' => 'operations::app.acl.edit',
+        'route' => ['admin.operations.suppliers.edit', 'admin.operations.suppliers.update'],
+        'sort' => 2,
+    ], [
+        'key' => 'operations.setup.suppliers.delete',
+        'name' => 'operations::app.acl.delete',
+        'route' => ['admin.operations.suppliers.delete'],
+        'sort' => 3,
+    ], [
         'key' => 'operations.setup.locations',
         'name' => 'operations::app.acl.locations',
         'route' => ['admin.operations.locations.index', 'admin.operations.locations.update'],
@@ -44,6 +64,68 @@ return [
             'admin.operations.stock_policies.delete',
         ],
         'sort' => 3,
+    ],
+
+    /**
+     * Module A: procurement.
+     */
+    [
+        'key' => 'operations.purchase_requests',
+        'name' => 'operations::app.acl.purchase-requests',
+        'route' => ['admin.operations.purchase_requests.index', 'admin.operations.purchase_requests.view'],
+        'sort' => 3,
+    ], [
+        'key' => 'operations.purchase_requests.create',
+        'name' => 'operations::app.acl.create',
+        'route' => [
+            'admin.operations.purchase_requests.create',
+            'admin.operations.purchase_requests.store',
+            'admin.operations.purchase_requests.edit',
+            'admin.operations.purchase_requests.update',
+            'admin.operations.purchase_requests.submit',
+            'admin.operations.purchase_requests.cancel',
+        ],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.purchase_requests.approve',
+        'name' => 'operations::app.acl.approve',
+        'route' => ['admin.operations.purchase_requests.approve', 'admin.operations.purchase_requests.reject'],
+        'sort' => 2,
+    ], [
+        'key' => 'operations.purchase_orders',
+        'name' => 'operations::app.acl.purchase-orders',
+        'route' => [
+            'admin.operations.purchase_orders.index',
+            'admin.operations.purchase_orders.view',
+            'admin.operations.purchase_orders.print',
+        ],
+        'sort' => 4,
+    ], [
+        'key' => 'operations.purchase_orders.create',
+        'name' => 'operations::app.acl.manage',
+        'route' => [
+            'admin.operations.purchase_orders.create',
+            'admin.operations.purchase_orders.store',
+            'admin.operations.purchase_orders.issue',
+            'admin.operations.purchase_orders.close',
+            'admin.operations.purchase_orders.cancel',
+        ],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.receiving',
+        'name' => 'operations::app.acl.receiving',
+        'route' => ['admin.operations.receiving.index', 'admin.operations.receiving.view'],
+        'sort' => 5,
+    ], [
+        'key' => 'operations.receiving.create',
+        'name' => 'operations::app.acl.receive',
+        'route' => ['admin.operations.receiving.create', 'admin.operations.receiving.store'],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.receiving.override',
+        'name' => 'operations::app.acl.over-receipt',
+        'route' => [],
+        'sort' => 2,
     ],
 
     /**

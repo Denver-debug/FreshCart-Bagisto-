@@ -31,6 +31,41 @@ return [
             ],
         ],
     ], [
+        'key' => 'operations.approvals.thresholds',
+        'name' => 'operations::app.configuration.approvals.thresholds',
+        'info' => 'operations::app.configuration.approvals.thresholds-info',
+        'sort' => 2,
+        'fields' => [
+            [
+                'name' => 'purchase_requests',
+                'title' => 'operations::app.configuration.approvals.pr-threshold',
+                'type' => 'number',
+                'default' => 50000,
+                'validation' => 'numeric|min:0',
+            ],
+        ],
+    ], [
+        'key' => 'operations.receiving',
+        'name' => 'operations::app.configuration.receiving.title',
+        'info' => 'operations::app.configuration.receiving.info',
+        'icon' => 'settings/shipping.svg',
+        'sort' => 2,
+    ], [
+        'key' => 'operations.receiving.general',
+        'name' => 'operations::app.configuration.receiving.general',
+        'info' => 'operations::app.configuration.receiving.general-info',
+        'sort' => 1,
+        'fields' => [
+            [
+                'name' => 'over_receipt_tolerance',
+                'title' => 'operations::app.configuration.receiving.tolerance',
+                'info' => 'operations::app.configuration.receiving.tolerance-info',
+                'type' => 'number',
+                'default' => 0,
+                'validation' => 'numeric|min:0|max:100',
+            ],
+        ],
+    ], [
         'key' => 'operations.inventory',
         'name' => 'operations::app.configuration.inventory.title',
         'info' => 'operations::app.configuration.inventory.info',
