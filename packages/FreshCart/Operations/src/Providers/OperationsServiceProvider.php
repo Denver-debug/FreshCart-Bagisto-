@@ -2,9 +2,15 @@
 
 namespace FreshCart\Operations\Providers;
 
+use FreshCart\Operations\Listeners\ProductInventoryObserver;
+use FreshCart\Operations\Services\ReferenceService;
+use FreshCart\Operations\Services\StockLedgerService;
+use FreshCart\Operations\Support\LocationScope;
+use FreshCart\Operations\Support\ProductCatalog;
 use FreshCart\Operations\Support\Settings;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
+use Webkul\Product\Models\ProductInventoryProxy;
 
 class OperationsServiceProvider extends ServiceProvider
 {
@@ -19,6 +25,10 @@ class OperationsServiceProvider extends ServiceProvider
 
         foreach ([
             Settings::class,
+            LocationScope::class,
+            ProductCatalog::class,
+            ReferenceService::class,
+            StockLedgerService::class,
         ] as $singleton) {
             $this->app->singleton($singleton);
         }
@@ -38,5 +48,7 @@ class OperationsServiceProvider extends ServiceProvider
         $this->loadViewsFrom(dirname(__DIR__).'/Resources/views', 'operations');
 
         Blade::anonymousComponentPath(dirname(__DIR__).'/Resources/views/components', 'operations');
+
+        ProductInventoryProxy::modelClass()::observe(ProductInventoryObserver::class);
     }
 }
