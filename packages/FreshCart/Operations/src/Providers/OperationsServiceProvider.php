@@ -5,6 +5,8 @@ namespace FreshCart\Operations\Providers;
 use FreshCart\Operations\Console\Commands\ApplyBranding;
 use FreshCart\Operations\Console\Commands\InstallRoles;
 use FreshCart\Operations\Console\Commands\RunMonitoring;
+use FreshCart\Operations\Console\Commands\SeedGroceryCatalog;
+use FreshCart\Operations\Console\Commands\SeedProductImages;
 use FreshCart\Operations\Listeners\ProductInventoryObserver;
 use FreshCart\Operations\Services\ApprovalService;
 use FreshCart\Operations\Services\NotificationService;
@@ -68,6 +70,8 @@ class OperationsServiceProvider extends ServiceProvider
                 ApplyBranding::class,
                 InstallRoles::class,
                 RunMonitoring::class,
+                SeedGroceryCatalog::class,
+                SeedProductImages::class,
             ]);
         }
 
