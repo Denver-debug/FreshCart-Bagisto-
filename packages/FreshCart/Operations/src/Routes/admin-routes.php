@@ -1,5 +1,7 @@
 <?php
 
+use FreshCart\Operations\Http\Controllers\Admin\Distribution\StockRequestController;
+use FreshCart\Operations\Http\Controllers\Admin\Distribution\TransferController;
 use FreshCart\Operations\Http\Controllers\Admin\Procurement\GoodsReceiptController;
 use FreshCart\Operations\Http\Controllers\Admin\Procurement\PurchaseOrderController;
 use FreshCart\Operations\Http\Controllers\Admin\Procurement\PurchaseRequestController;
@@ -82,6 +84,44 @@ Route::group([
         Route::get('create/{purchaseOrderId}', 'create')->name('admin.operations.receiving.create');
         Route::post('create/{purchaseOrderId}', 'store')->name('admin.operations.receiving.store');
         Route::get('{id}', 'view')->name('admin.operations.receiving.view');
+    });
+
+    /**
+     * Module B: branch replenishment.
+     */
+    Route::controller(StockRequestController::class)->prefix('stock-requests')->group(function () {
+        Route::get('', 'index')->name('admin.operations.stock_requests.index');
+        Route::get('create', 'create')->name('admin.operations.stock_requests.create');
+        Route::post('create', 'store')->name('admin.operations.stock_requests.store');
+        Route::get('{id}', 'view')->name('admin.operations.stock_requests.view');
+        Route::get('{id}/edit', 'edit')->name('admin.operations.stock_requests.edit');
+        Route::put('{id}/edit', 'update')->name('admin.operations.stock_requests.update');
+        Route::post('{id}/submit', 'submit')->name('admin.operations.stock_requests.submit');
+        Route::post('{id}/cancel', 'cancel')->name('admin.operations.stock_requests.cancel');
+        Route::post('{id}/reject', 'reject')->name('admin.operations.stock_requests.reject');
+        Route::get('{id}/allocate', 'allocation')->name('admin.operations.stock_requests.allocation');
+        Route::post('{id}/allocate', 'allocate')->name('admin.operations.stock_requests.allocate');
+    });
+
+    /**
+     * Module C: transfers (also carries replenishment dispatches).
+     */
+    Route::controller(TransferController::class)->prefix('transfers')->group(function () {
+        Route::get('', 'index')->name('admin.operations.transfers.index');
+        Route::get('create', 'create')->name('admin.operations.transfers.create');
+        Route::post('create', 'store')->name('admin.operations.transfers.store');
+        Route::get('{id}', 'view')->name('admin.operations.transfers.view');
+        Route::get('{id}/print', 'print')->name('admin.operations.transfers.print');
+        Route::post('{id}/submit', 'submit')->name('admin.operations.transfers.submit');
+        Route::post('{id}/approve', 'approve')->name('admin.operations.transfers.approve');
+        Route::post('{id}/reject', 'reject')->name('admin.operations.transfers.reject');
+        Route::post('{id}/cancel', 'cancel')->name('admin.operations.transfers.cancel');
+        Route::post('{id}/pick', 'pick')->name('admin.operations.transfers.pick');
+        Route::post('{id}/schedule', 'schedule')->name('admin.operations.transfers.schedule');
+        Route::post('{id}/dispatch', 'dispatchTransfer')->name('admin.operations.transfers.dispatch');
+        Route::post('{id}/receive', 'receive')->name('admin.operations.transfers.receive');
+        Route::post('{id}/close', 'closeWithDiscrepancy')->name('admin.operations.transfers.close');
+        Route::post('{id}/return', 'createReturn')->name('admin.operations.transfers.return');
     });
 
     /**

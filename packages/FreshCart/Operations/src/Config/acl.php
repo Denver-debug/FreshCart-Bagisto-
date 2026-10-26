@@ -129,6 +129,88 @@ return [
     ],
 
     /**
+     * Module B: branch replenishment.
+     */
+    [
+        'key' => 'operations.stock_requests',
+        'name' => 'operations::app.acl.stock-requests',
+        'route' => ['admin.operations.stock_requests.index', 'admin.operations.stock_requests.view'],
+        'sort' => 6,
+    ], [
+        'key' => 'operations.stock_requests.create',
+        'name' => 'operations::app.acl.create',
+        'route' => [
+            'admin.operations.stock_requests.create',
+            'admin.operations.stock_requests.store',
+            'admin.operations.stock_requests.edit',
+            'admin.operations.stock_requests.update',
+            'admin.operations.stock_requests.submit',
+            'admin.operations.stock_requests.cancel',
+        ],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.stock_requests.allocate',
+        'name' => 'operations::app.acl.allocate',
+        'route' => [
+            'admin.operations.stock_requests.allocation',
+            'admin.operations.stock_requests.allocate',
+            'admin.operations.stock_requests.reject',
+        ],
+        'sort' => 2,
+    ],
+
+    /**
+     * Module C: transfers.
+     */
+    [
+        'key' => 'operations.transfers',
+        'name' => 'operations::app.acl.transfers',
+        'route' => ['admin.operations.transfers.index', 'admin.operations.transfers.view', 'admin.operations.transfers.print'],
+        'sort' => 7,
+    ], [
+        'key' => 'operations.transfers.create',
+        'name' => 'operations::app.acl.create',
+        'route' => [
+            'admin.operations.transfers.create',
+            'admin.operations.transfers.store',
+            'admin.operations.transfers.submit',
+            'admin.operations.transfers.cancel',
+            'admin.operations.transfers.return',
+        ],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.transfers.approve',
+        'name' => 'operations::app.acl.approve',
+        'route' => ['admin.operations.transfers.approve', 'admin.operations.transfers.reject'],
+        'sort' => 2,
+    ], [
+        'key' => 'operations.transfers.pick',
+        'name' => 'operations::app.acl.pick',
+        'route' => ['admin.operations.transfers.pick'],
+        'sort' => 3,
+    ], [
+        'key' => 'operations.transfers.schedule',
+        'name' => 'operations::app.acl.schedule',
+        'route' => ['admin.operations.transfers.schedule'],
+        'sort' => 4,
+    ], [
+        'key' => 'operations.transfers.dispatch',
+        'name' => 'operations::app.acl.dispatch',
+        'route' => ['admin.operations.transfers.dispatch'],
+        'sort' => 5,
+    ], [
+        'key' => 'operations.transfers.receive',
+        'name' => 'operations::app.acl.receive',
+        'route' => ['admin.operations.transfers.receive'],
+        'sort' => 6,
+    ], [
+        'key' => 'operations.transfers.close',
+        'name' => 'operations::app.acl.close-discrepancy',
+        'route' => ['admin.operations.transfers.close'],
+        'sort' => 7,
+    ],
+
+    /**
      * Module D: returns, damages and adjustments.
      */
     [

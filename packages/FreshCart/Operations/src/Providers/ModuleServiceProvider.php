@@ -20,9 +20,15 @@ use FreshCart\Operations\Models\StockHold;
 use FreshCart\Operations\Models\StockLot;
 use FreshCart\Operations\Models\StockMovement;
 use FreshCart\Operations\Models\StockPolicy;
+use FreshCart\Operations\Models\StockRequest;
+use FreshCart\Operations\Models\StockRequestItem;
 use FreshCart\Operations\Models\Supplier;
 use FreshCart\Operations\Models\SupplierReturn;
 use FreshCart\Operations\Models\SupplierReturnItem;
+use FreshCart\Operations\Models\Transfer;
+use FreshCart\Operations\Models\TransferItem;
+use FreshCart\Operations\Models\TransferReceipt;
+use FreshCart\Operations\Models\TransferReceiptItem;
 use Konekt\Concord\BaseModuleServiceProvider;
 
 class ModuleServiceProvider extends BaseModuleServiceProvider
@@ -49,8 +55,14 @@ class ModuleServiceProvider extends BaseModuleServiceProvider
         StockLot::class,
         StockMovement::class,
         StockPolicy::class,
+        StockRequest::class,
+        StockRequestItem::class,
         Supplier::class,
         SupplierReturn::class,
         SupplierReturnItem::class,
+        Transfer::class,
+        TransferItem::class,
+        TransferReceipt::class,
+        TransferReceiptItem::class,
     ];
 }

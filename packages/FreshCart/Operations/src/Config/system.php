@@ -100,6 +100,33 @@ return [
             ],
         ],
     ], [
+        'key' => 'operations.transfers',
+        'name' => 'operations::app.configuration.transfers.title',
+        'info' => 'operations::app.configuration.transfers.info',
+        'icon' => 'settings/shipping-method.svg',
+        'sort' => 4,
+    ], [
+        'key' => 'operations.transfers.general',
+        'name' => 'operations::app.configuration.transfers.general',
+        'info' => 'operations::app.configuration.transfers.general-info',
+        'sort' => 1,
+        'fields' => [
+            [
+                'name' => 'require_approval',
+                'title' => 'operations::app.configuration.transfers.require-approval',
+                'info' => 'operations::app.configuration.transfers.require-approval-info',
+                'type' => 'boolean',
+                'default' => true,
+            ], [
+                'name' => 'overdue_hours',
+                'title' => 'operations::app.configuration.transfers.overdue-hours',
+                'info' => 'operations::app.configuration.transfers.overdue-hours-info',
+                'type' => 'number',
+                'default' => 24,
+                'validation' => 'integer|min:1',
+            ],
+        ],
+    ], [
         'key' => 'operations.notifications',
         'name' => 'operations::app.configuration.notifications.title',
         'info' => 'operations::app.configuration.notifications.info',

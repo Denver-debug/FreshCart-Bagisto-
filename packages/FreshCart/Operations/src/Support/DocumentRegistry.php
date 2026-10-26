@@ -4,6 +4,7 @@ namespace FreshCart\Operations\Support;
 
 use FreshCart\Operations\Models\Adjustment;
 use FreshCart\Operations\Models\PurchaseRequest;
+use FreshCart\Operations\Models\Transfer;
 use Illuminate\Database\Eloquent\Model;
 use InvalidArgumentException;
 
@@ -17,6 +18,11 @@ class DocumentRegistry
             'model' => PurchaseRequest::class,
             'route' => 'admin.operations.purchase_requests.view',
             'threshold' => 'purchase_requests',
+        ],
+        'transfers' => [
+            'model' => Transfer::class,
+            'route' => 'admin.operations.transfers.view',
+            'threshold' => null,
         ],
         'adjustments' => [
             'model' => Adjustment::class,
