@@ -31,6 +31,11 @@
             <directory suffix="Test.php">packages/Webkul/EUWithdrawal/tests/Feature</directory>
         </testsuite>
 
+        <!-- FreshCart Operations package testsuites. -->
+        <testsuite name="FreshCart Operations Feature Test">
+            <directory suffix="Test.php">packages/FreshCart/Operations/tests/Feature</directory>
+        </testsuite>
+
         <!-- Installer package testsuites. -->
         <testsuite name="Installer Feature Test">
             <directory suffix="Test.php">packages/Webkul/Installer/tests/Feature</directory>

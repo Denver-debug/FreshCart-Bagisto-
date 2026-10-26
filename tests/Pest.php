@@ -1,5 +1,6 @@
 <?php
 
+use FreshCart\Operations\Tests\OperationsTestCase;
 use Webkul\Admin\Tests\AdminTestCase;
 use Webkul\Core\Tests\CoreTestCase;
 use Webkul\Customer\Tests\CustomerTestCase;
@@ -36,6 +37,7 @@ uses(PayUTestCase::class)->in('../packages/Webkul/PayU/tests');
 uses(RazorpayTestCase::class)->in('../packages/Webkul/Razorpay/tests');
 uses(ShopTestCase::class)->in('../packages/Webkul/Shop/tests');
 uses(StripeTestCase::class)->in('../packages/Webkul/Stripe/tests');
+uses(OperationsTestCase::class)->in('../packages/FreshCart/Operations/tests');
 
 /*
 |--------------------------------------------------------------------------

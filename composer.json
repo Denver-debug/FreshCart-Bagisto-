@@ -113,6 +113,7 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
+            "FreshCart\\Operations\\Tests\\": "packages/FreshCart/Operations/tests",
             "Webkul\\Admin\\Tests\\": "packages/Webkul/Admin/tests",
             "Webkul\\Core\\Tests\\": "packages/Webkul/Core/tests",
             "Webkul\\Customer\\Tests\\": "packages/Webkul/Customer/tests",
