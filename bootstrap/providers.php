@@ -1,6 +1,7 @@
 <?php
 
 use App\Providers\AppServiceProvider;
+use FreshCart\Operations\Providers\OperationsServiceProvider;
 use Webkul\Admin\Providers\AdminServiceProvider;
 use Webkul\Attribute\Providers\AttributeServiceProvider;
 use Webkul\BookingProduct\Providers\BookingProductServiceProvider;
@@ -93,4 +94,9 @@ return [
     TaxServiceProvider::class,
     ThemeServiceProvider::class,
     UserServiceProvider::class,
+
+    /**
+     * FreshCart's service providers.
+     */
+    OperationsServiceProvider::class,
 ];
