@@ -309,6 +309,8 @@ return [
         'po-expected' => 'Purchase order :reference expected on :date.',
         'po-overdue' => 'Purchase order :reference is overdue (expected :date).',
         'receiving-discrepancy' => 'Goods receipt :reference for :po has discrepancies.',
+        'low-stock' => 'Low stock: :sku at :location (:qty on hand, reorder level :level).',
+        'low-stock-digest' => ':count products at :location are at or below their reorder level.',
         'stock-request-submitted' => 'Branch request :reference from :location is waiting for allocation.',
         'stock-request-status' => 'Branch request :reference is now :status.',
         'transfer-dispatched' => 'Transfer :reference has been dispatched to :location.',
