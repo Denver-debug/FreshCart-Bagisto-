@@ -42,6 +42,12 @@ return [
                 'type' => 'number',
                 'default' => 50000,
                 'validation' => 'numeric|min:0',
+            ], [
+                'name' => 'adjustments',
+                'title' => 'operations::app.configuration.approvals.adjustment-threshold',
+                'type' => 'number',
+                'default' => 10000,
+                'validation' => 'numeric|min:0',
             ],
         ],
     ], [

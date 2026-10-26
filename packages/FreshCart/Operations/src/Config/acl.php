@@ -129,6 +129,70 @@ return [
     ],
 
     /**
+     * Module D: returns, damages and adjustments.
+     */
+    [
+        'key' => 'operations.incidents',
+        'name' => 'operations::app.acl.incidents',
+        'route' => ['admin.operations.incidents.index', 'admin.operations.incidents.view', 'admin.operations.incidents.photo'],
+        'sort' => 8,
+    ], [
+        'key' => 'operations.incidents.create',
+        'name' => 'operations::app.acl.report',
+        'route' => ['admin.operations.incidents.create', 'admin.operations.incidents.store'],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.incidents.inspect',
+        'name' => 'operations::app.acl.inspect',
+        'route' => ['admin.operations.incidents.inspect'],
+        'sort' => 2,
+    ], [
+        'key' => 'operations.incidents.classify',
+        'name' => 'operations::app.acl.classify',
+        'route' => ['admin.operations.incidents.classify'],
+        'sort' => 3,
+    ], [
+        'key' => 'operations.adjustments',
+        'name' => 'operations::app.acl.adjustments',
+        'route' => ['admin.operations.adjustments.index', 'admin.operations.adjustments.view'],
+        'sort' => 9,
+    ], [
+        'key' => 'operations.adjustments.create',
+        'name' => 'operations::app.acl.create',
+        'route' => [
+            'admin.operations.adjustments.create',
+            'admin.operations.adjustments.store',
+            'admin.operations.adjustments.submit',
+            'admin.operations.adjustments.cancel',
+        ],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.adjustments.approve',
+        'name' => 'operations::app.acl.approve',
+        'route' => ['admin.operations.adjustments.approve', 'admin.operations.adjustments.reject'],
+        'sort' => 2,
+    ], [
+        'key' => 'operations.adjustments.post',
+        'name' => 'operations::app.acl.post',
+        'route' => ['admin.operations.adjustments.post'],
+        'sort' => 3,
+    ], [
+        'key' => 'operations.supplier_returns',
+        'name' => 'operations::app.acl.supplier-returns',
+        'route' => ['admin.operations.supplier_returns.index', 'admin.operations.supplier_returns.view'],
+        'sort' => 10,
+    ], [
+        'key' => 'operations.supplier_returns.manage',
+        'name' => 'operations::app.acl.manage',
+        'route' => [
+            'admin.operations.supplier_returns.dispatch',
+            'admin.operations.supplier_returns.resolve',
+            'admin.operations.supplier_returns.cancel',
+        ],
+        'sort' => 1,
+    ],
+
+    /**
      * Cross-cutting authorities.
      */
     [

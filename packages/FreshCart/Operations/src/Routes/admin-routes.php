@@ -4,6 +4,9 @@ use FreshCart\Operations\Http\Controllers\Admin\Procurement\GoodsReceiptControll
 use FreshCart\Operations\Http\Controllers\Admin\Procurement\PurchaseOrderController;
 use FreshCart\Operations\Http\Controllers\Admin\Procurement\PurchaseRequestController;
 use FreshCart\Operations\Http\Controllers\Admin\ProductLookupController;
+use FreshCart\Operations\Http\Controllers\Admin\Quality\AdjustmentController;
+use FreshCart\Operations\Http\Controllers\Admin\Quality\IncidentController;
+use FreshCart\Operations\Http\Controllers\Admin\Quality\SupplierReturnController;
 use FreshCart\Operations\Http\Controllers\Admin\Setup\LocationController;
 use FreshCart\Operations\Http\Controllers\Admin\Setup\StockPolicyController;
 use FreshCart\Operations\Http\Controllers\Admin\Setup\SupplierController;
@@ -79,6 +82,39 @@ Route::group([
         Route::get('create/{purchaseOrderId}', 'create')->name('admin.operations.receiving.create');
         Route::post('create/{purchaseOrderId}', 'store')->name('admin.operations.receiving.store');
         Route::get('{id}', 'view')->name('admin.operations.receiving.view');
+    });
+
+    /**
+     * Module D: incidents, adjustments, supplier returns.
+     */
+    Route::controller(IncidentController::class)->prefix('incidents')->group(function () {
+        Route::get('', 'index')->name('admin.operations.incidents.index');
+        Route::get('create', 'create')->name('admin.operations.incidents.create');
+        Route::post('create', 'store')->name('admin.operations.incidents.store');
+        Route::get('{id}', 'view')->name('admin.operations.incidents.view');
+        Route::get('{id}/photo/{attachmentId}', 'photo')->name('admin.operations.incidents.photo');
+        Route::post('{id}/inspect', 'inspect')->name('admin.operations.incidents.inspect');
+        Route::post('{id}/classify', 'classify')->name('admin.operations.incidents.classify');
+    });
+
+    Route::controller(AdjustmentController::class)->prefix('adjustments')->group(function () {
+        Route::get('', 'index')->name('admin.operations.adjustments.index');
+        Route::get('create', 'create')->name('admin.operations.adjustments.create');
+        Route::post('create', 'store')->name('admin.operations.adjustments.store');
+        Route::get('{id}', 'view')->name('admin.operations.adjustments.view');
+        Route::post('{id}/submit', 'submit')->name('admin.operations.adjustments.submit');
+        Route::post('{id}/approve', 'approve')->name('admin.operations.adjustments.approve');
+        Route::post('{id}/reject', 'reject')->name('admin.operations.adjustments.reject');
+        Route::post('{id}/post', 'post')->name('admin.operations.adjustments.post');
+        Route::post('{id}/cancel', 'cancel')->name('admin.operations.adjustments.cancel');
+    });
+
+    Route::controller(SupplierReturnController::class)->prefix('supplier-returns')->group(function () {
+        Route::get('', 'index')->name('admin.operations.supplier_returns.index');
+        Route::get('{id}', 'view')->name('admin.operations.supplier_returns.view');
+        Route::post('{id}/dispatch', 'dispatchReturn')->name('admin.operations.supplier_returns.dispatch');
+        Route::post('{id}/resolve', 'resolve')->name('admin.operations.supplier_returns.resolve');
+        Route::post('{id}/cancel', 'cancel')->name('admin.operations.supplier_returns.cancel');
     });
 
 });
