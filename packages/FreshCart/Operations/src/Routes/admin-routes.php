@@ -2,6 +2,8 @@
 
 use FreshCart\Operations\Http\Controllers\Admin\Distribution\StockRequestController;
 use FreshCart\Operations\Http\Controllers\Admin\Distribution\TransferController;
+use FreshCart\Operations\Http\Controllers\Admin\Pricing\PriceChangeController;
+use FreshCart\Operations\Http\Controllers\Admin\Pricing\PromotionController;
 use FreshCart\Operations\Http\Controllers\Admin\Procurement\GoodsReceiptController;
 use FreshCart\Operations\Http\Controllers\Admin\Procurement\PurchaseOrderController;
 use FreshCart\Operations\Http\Controllers\Admin\Procurement\PurchaseRequestController;
@@ -184,6 +186,34 @@ Route::group([
         Route::post('{id}/segregate', 'segregate')->name('admin.operations.disposals.segregate');
         Route::post('{id}/complete', 'complete')->name('admin.operations.disposals.complete');
         Route::post('{id}/cancel', 'cancel')->name('admin.operations.disposals.cancel');
+    });
+
+    /**
+     * Module E: pricing and promotions.
+     */
+    Route::controller(PromotionController::class)->prefix('promotions')->group(function () {
+        Route::get('', 'index')->name('admin.operations.promotions.index');
+        Route::get('create', 'create')->name('admin.operations.promotions.create');
+        Route::post('create', 'store')->name('admin.operations.promotions.store');
+        Route::get('{id}', 'view')->name('admin.operations.promotions.view');
+        Route::get('{id}/edit', 'edit')->name('admin.operations.promotions.edit');
+        Route::put('{id}/edit', 'update')->name('admin.operations.promotions.update');
+        Route::post('{id}/submit', 'submit')->name('admin.operations.promotions.submit');
+        Route::post('{id}/approve', 'approve')->name('admin.operations.promotions.approve');
+        Route::post('{id}/reject', 'reject')->name('admin.operations.promotions.reject');
+        Route::post('{id}/cancel', 'cancel')->name('admin.operations.promotions.cancel');
+    });
+
+    Route::controller(PriceChangeController::class)->prefix('price-changes')->group(function () {
+        Route::get('', 'index')->name('admin.operations.price_changes.index');
+        Route::get('create', 'create')->name('admin.operations.price_changes.create');
+        Route::post('create', 'store')->name('admin.operations.price_changes.store');
+        Route::get('template', 'template')->name('admin.operations.price_changes.template');
+        Route::get('{id}', 'view')->name('admin.operations.price_changes.view');
+        Route::post('{id}/submit', 'submit')->name('admin.operations.price_changes.submit');
+        Route::post('{id}/approve', 'approve')->name('admin.operations.price_changes.approve');
+        Route::post('{id}/reject', 'reject')->name('admin.operations.price_changes.reject');
+        Route::post('{id}/cancel', 'cancel')->name('admin.operations.price_changes.cancel');
     });
 
 });

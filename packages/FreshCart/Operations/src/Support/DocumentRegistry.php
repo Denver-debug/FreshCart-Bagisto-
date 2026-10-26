@@ -4,6 +4,8 @@ namespace FreshCart\Operations\Support;
 
 use FreshCart\Operations\Models\Adjustment;
 use FreshCart\Operations\Models\DisposalRequest;
+use FreshCart\Operations\Models\PriceChangeBatch;
+use FreshCart\Operations\Models\PromotionProposal;
 use FreshCart\Operations\Models\PurchaseRequest;
 use FreshCart\Operations\Models\Transfer;
 use Illuminate\Database\Eloquent\Model;
@@ -34,6 +36,16 @@ class DocumentRegistry
             'model' => DisposalRequest::class,
             'route' => 'admin.operations.disposals.view',
             'threshold' => 'disposals',
+        ],
+        'promotions' => [
+            'model' => PromotionProposal::class,
+            'route' => 'admin.operations.promotions.view',
+            'threshold' => 'promotions',
+        ],
+        'price_changes' => [
+            'model' => PriceChangeBatch::class,
+            'route' => 'admin.operations.price_changes.view',
+            'threshold' => 'price_changes',
         ],
     ];
 

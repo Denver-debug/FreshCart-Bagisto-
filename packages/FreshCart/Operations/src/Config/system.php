@@ -54,6 +54,18 @@ return [
                 'type' => 'number',
                 'default' => 10000,
                 'validation' => 'numeric|min:0',
+            ], [
+                'name' => 'promotions',
+                'title' => 'operations::app.configuration.approvals.promotion-threshold',
+                'type' => 'number',
+                'default' => 30,
+                'validation' => 'numeric|min:0',
+            ], [
+                'name' => 'price_changes',
+                'title' => 'operations::app.configuration.approvals.price-change-threshold',
+                'type' => 'number',
+                'default' => 100,
+                'validation' => 'numeric|min:0',
             ],
         ],
     ], [
@@ -162,6 +174,32 @@ return [
                 'info' => 'operations::app.configuration.retirement.slow-moving-max-units-info',
                 'type' => 'number',
                 'default' => 0,
+                'validation' => 'integer|min:0',
+            ],
+        ],
+    ], [
+        'key' => 'operations.promotions',
+        'name' => 'operations::app.configuration.promotions.title',
+        'info' => 'operations::app.configuration.promotions.info',
+        'icon' => 'settings/tax.svg',
+        'sort' => 6,
+    ], [
+        'key' => 'operations.promotions.general',
+        'name' => 'operations::app.configuration.promotions.general',
+        'info' => 'operations::app.configuration.promotions.general-info',
+        'sort' => 1,
+        'fields' => [
+            [
+                'name' => 'max_discount_percent',
+                'title' => 'operations::app.configuration.promotions.max-discount',
+                'type' => 'number',
+                'default' => 50,
+                'validation' => 'numeric|min:0|max:100',
+            ], [
+                'name' => 'expiry_warning_days',
+                'title' => 'operations::app.configuration.promotions.expiry-warning-days',
+                'type' => 'number',
+                'default' => 2,
                 'validation' => 'integer|min:0',
             ],
         ],

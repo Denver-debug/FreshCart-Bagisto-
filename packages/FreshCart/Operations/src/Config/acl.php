@@ -324,6 +324,57 @@ return [
     ],
 
     /**
+     * Module E: pricing and promotions.
+     */
+    [
+        'key' => 'operations.promotions',
+        'name' => 'operations::app.acl.promotions',
+        'route' => ['admin.operations.promotions.index', 'admin.operations.promotions.view'],
+        'sort' => 12,
+    ], [
+        'key' => 'operations.promotions.create',
+        'name' => 'operations::app.acl.propose',
+        'route' => [
+            'admin.operations.promotions.create',
+            'admin.operations.promotions.store',
+            'admin.operations.promotions.edit',
+            'admin.operations.promotions.update',
+            'admin.operations.promotions.submit',
+            'admin.operations.promotions.cancel',
+        ],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.promotions.approve',
+        'name' => 'operations::app.acl.approve',
+        'route' => ['admin.operations.promotions.approve', 'admin.operations.promotions.reject'],
+        'sort' => 2,
+    ], [
+        'key' => 'operations.price_changes',
+        'name' => 'operations::app.acl.price-changes',
+        'route' => [
+            'admin.operations.price_changes.index',
+            'admin.operations.price_changes.view',
+            'admin.operations.price_changes.template',
+        ],
+        'sort' => 13,
+    ], [
+        'key' => 'operations.price_changes.create',
+        'name' => 'operations::app.acl.create',
+        'route' => [
+            'admin.operations.price_changes.create',
+            'admin.operations.price_changes.store',
+            'admin.operations.price_changes.submit',
+            'admin.operations.price_changes.cancel',
+        ],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.price_changes.approve',
+        'name' => 'operations::app.acl.approve',
+        'route' => ['admin.operations.price_changes.approve', 'admin.operations.price_changes.reject'],
+        'sort' => 2,
+    ],
+
+    /**
      * Cross-cutting authorities.
      */
     [
