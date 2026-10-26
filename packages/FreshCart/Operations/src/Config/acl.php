@@ -11,9 +11,20 @@ return [
         'key' => 'operations',
         'name' => 'operations::app.acl.operations',
         'route' => [
+            'admin.operations.dashboard.index',
             'admin.operations.products.search',
         ],
         'sort' => 3,
+    ], [
+        'key' => 'operations.inbox',
+        'name' => 'operations::app.acl.inbox',
+        'route' => [
+            'admin.operations.notifications.index',
+            'admin.operations.notifications.read_all',
+            'admin.operations.notifications.open',
+            'admin.operations.approvals.index',
+        ],
+        'sort' => 0,
     ], [
         'key' => 'operations.stock',
         'name' => 'operations::app.acl.stock',

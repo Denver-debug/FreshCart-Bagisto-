@@ -1,7 +1,10 @@
 <?php
 
+use FreshCart\Operations\Http\Controllers\Admin\ApprovalQueueController;
+use FreshCart\Operations\Http\Controllers\Admin\DashboardController;
 use FreshCart\Operations\Http\Controllers\Admin\Distribution\StockRequestController;
 use FreshCart\Operations\Http\Controllers\Admin\Distribution\TransferController;
+use FreshCart\Operations\Http\Controllers\Admin\NotificationController;
 use FreshCart\Operations\Http\Controllers\Admin\Pricing\PriceChangeController;
 use FreshCart\Operations\Http\Controllers\Admin\Pricing\PromotionController;
 use FreshCart\Operations\Http\Controllers\Admin\Procurement\GoodsReceiptController;
@@ -25,11 +28,21 @@ Route::group([
     'middleware' => ['web', 'admin', NoCacheMiddleware::class],
     'prefix' => config('app.admin_url').'/operations',
 ], function () {
+    Route::get('', [DashboardController::class, 'index'])->name('admin.operations.dashboard.index');
+
     Route::get('products/search', [ProductLookupController::class, 'search'])->name('admin.operations.products.search');
 
     Route::get('stock', [StockController::class, 'index'])->name('admin.operations.stock.index');
 
     Route::get('stock/{productId}', [StockController::class, 'view'])->name('admin.operations.stock.view');
+
+    Route::controller(NotificationController::class)->prefix('notifications')->group(function () {
+        Route::get('', 'index')->name('admin.operations.notifications.index');
+        Route::post('read-all', 'readAll')->name('admin.operations.notifications.read_all');
+        Route::get('{id}', 'open')->name('admin.operations.notifications.open');
+    });
+
+    Route::get('approvals', [ApprovalQueueController::class, 'index'])->name('admin.operations.approvals.index');
 
     /**
      * Setup.
