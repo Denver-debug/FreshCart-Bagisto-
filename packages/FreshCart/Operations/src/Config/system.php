@@ -48,6 +48,12 @@ return [
                 'type' => 'number',
                 'default' => 10000,
                 'validation' => 'numeric|min:0',
+            ], [
+                'name' => 'disposals',
+                'title' => 'operations::app.configuration.approvals.disposal-threshold',
+                'type' => 'number',
+                'default' => 10000,
+                'validation' => 'numeric|min:0',
             ],
         ],
     ], [
@@ -124,6 +130,39 @@ return [
                 'type' => 'number',
                 'default' => 24,
                 'validation' => 'integer|min:1',
+            ],
+        ],
+    ], [
+        'key' => 'operations.retirement',
+        'name' => 'operations::app.configuration.retirement.title',
+        'info' => 'operations::app.configuration.retirement.info',
+        'icon' => 'settings/product.svg',
+        'sort' => 5,
+    ], [
+        'key' => 'operations.retirement.criteria',
+        'name' => 'operations::app.configuration.retirement.criteria',
+        'info' => 'operations::app.configuration.retirement.criteria-info',
+        'sort' => 1,
+        'fields' => [
+            [
+                'name' => 'expiry_warning_days',
+                'title' => 'operations::app.configuration.retirement.expiry-warning-days',
+                'type' => 'number',
+                'default' => 7,
+                'validation' => 'integer|min:0',
+            ], [
+                'name' => 'slow_moving_days',
+                'title' => 'operations::app.configuration.retirement.slow-moving-days',
+                'type' => 'number',
+                'default' => 90,
+                'validation' => 'integer|min:1',
+            ], [
+                'name' => 'slow_moving_max_units',
+                'title' => 'operations::app.configuration.retirement.slow-moving-max-units',
+                'info' => 'operations::app.configuration.retirement.slow-moving-max-units-info',
+                'type' => 'number',
+                'default' => 0,
+                'validation' => 'integer|min:0',
             ],
         ],
     ], [

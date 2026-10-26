@@ -3,6 +3,7 @@
 namespace FreshCart\Operations\Support;
 
 use FreshCart\Operations\Models\Adjustment;
+use FreshCart\Operations\Models\DisposalRequest;
 use FreshCart\Operations\Models\PurchaseRequest;
 use FreshCart\Operations\Models\Transfer;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,11 @@ class DocumentRegistry
             'model' => Adjustment::class,
             'route' => 'admin.operations.adjustments.view',
             'threshold' => 'adjustments',
+        ],
+        'disposals' => [
+            'model' => DisposalRequest::class,
+            'route' => 'admin.operations.disposals.view',
+            'threshold' => 'disposals',
         ],
     ];
 

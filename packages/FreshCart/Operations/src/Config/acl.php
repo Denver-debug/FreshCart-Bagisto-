@@ -275,6 +275,55 @@ return [
     ],
 
     /**
+     * Module F: retirement and disposal.
+     */
+    [
+        'key' => 'operations.disposals',
+        'name' => 'operations::app.acl.disposals',
+        'route' => [
+            'admin.operations.disposals.index',
+            'admin.operations.disposals.view',
+            'admin.operations.disposals.print',
+            'admin.operations.disposals.evidence',
+            'admin.operations.candidates.index',
+        ],
+        'sort' => 11,
+    ], [
+        'key' => 'operations.disposals.create',
+        'name' => 'operations::app.acl.nominate',
+        'route' => [
+            'admin.operations.disposals.create',
+            'admin.operations.disposals.store',
+            'admin.operations.disposals.submit',
+            'admin.operations.disposals.cancel',
+            'admin.operations.candidates.refresh',
+            'admin.operations.candidates.nominate',
+            'admin.operations.candidates.dismiss',
+        ],
+        'sort' => 1,
+    ], [
+        'key' => 'operations.disposals.inspect',
+        'name' => 'operations::app.acl.inspect',
+        'route' => ['admin.operations.disposals.inspect'],
+        'sort' => 2,
+    ], [
+        'key' => 'operations.disposals.value',
+        'name' => 'operations::app.acl.value',
+        'route' => ['admin.operations.disposals.value'],
+        'sort' => 3,
+    ], [
+        'key' => 'operations.disposals.approve',
+        'name' => 'operations::app.acl.approve',
+        'route' => ['admin.operations.disposals.approve', 'admin.operations.disposals.reject'],
+        'sort' => 4,
+    ], [
+        'key' => 'operations.disposals.execute',
+        'name' => 'operations::app.acl.execute',
+        'route' => ['admin.operations.disposals.segregate', 'admin.operations.disposals.complete'],
+        'sort' => 5,
+    ],
+
+    /**
      * Cross-cutting authorities.
      */
     [

@@ -9,6 +9,8 @@ use FreshCart\Operations\Http\Controllers\Admin\ProductLookupController;
 use FreshCart\Operations\Http\Controllers\Admin\Quality\AdjustmentController;
 use FreshCart\Operations\Http\Controllers\Admin\Quality\IncidentController;
 use FreshCart\Operations\Http\Controllers\Admin\Quality\SupplierReturnController;
+use FreshCart\Operations\Http\Controllers\Admin\Retirement\CandidateController;
+use FreshCart\Operations\Http\Controllers\Admin\Retirement\DisposalController;
 use FreshCart\Operations\Http\Controllers\Admin\Setup\LocationController;
 use FreshCart\Operations\Http\Controllers\Admin\Setup\StockPolicyController;
 use FreshCart\Operations\Http\Controllers\Admin\Setup\SupplierController;
@@ -155,6 +157,33 @@ Route::group([
         Route::post('{id}/dispatch', 'dispatchReturn')->name('admin.operations.supplier_returns.dispatch');
         Route::post('{id}/resolve', 'resolve')->name('admin.operations.supplier_returns.resolve');
         Route::post('{id}/cancel', 'cancel')->name('admin.operations.supplier_returns.cancel');
+    });
+
+    /**
+     * Module F: retirement and disposal.
+     */
+    Route::controller(CandidateController::class)->prefix('retirement-candidates')->group(function () {
+        Route::get('', 'index')->name('admin.operations.candidates.index');
+        Route::post('refresh', 'refresh')->name('admin.operations.candidates.refresh');
+        Route::post('nominate', 'nominate')->name('admin.operations.candidates.nominate');
+        Route::post('{id}/dismiss', 'dismiss')->name('admin.operations.candidates.dismiss');
+    });
+
+    Route::controller(DisposalController::class)->prefix('disposals')->group(function () {
+        Route::get('', 'index')->name('admin.operations.disposals.index');
+        Route::get('create', 'create')->name('admin.operations.disposals.create');
+        Route::post('create', 'store')->name('admin.operations.disposals.store');
+        Route::get('{id}', 'view')->name('admin.operations.disposals.view');
+        Route::get('{id}/print', 'print')->name('admin.operations.disposals.print');
+        Route::get('{id}/evidence/{attachmentId}', 'evidence')->name('admin.operations.disposals.evidence');
+        Route::post('{id}/submit', 'submit')->name('admin.operations.disposals.submit');
+        Route::post('{id}/inspect', 'inspect')->name('admin.operations.disposals.inspect');
+        Route::post('{id}/value', 'value')->name('admin.operations.disposals.value');
+        Route::post('{id}/approve', 'approve')->name('admin.operations.disposals.approve');
+        Route::post('{id}/reject', 'reject')->name('admin.operations.disposals.reject');
+        Route::post('{id}/segregate', 'segregate')->name('admin.operations.disposals.segregate');
+        Route::post('{id}/complete', 'complete')->name('admin.operations.disposals.complete');
+        Route::post('{id}/cancel', 'cancel')->name('admin.operations.disposals.cancel');
     });
 
 });
