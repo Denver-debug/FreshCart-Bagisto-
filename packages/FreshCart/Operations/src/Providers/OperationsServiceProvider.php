@@ -2,6 +2,7 @@
 
 namespace FreshCart\Operations\Providers;
 
+use FreshCart\Operations\Console\Commands\InstallRoles;
 use FreshCart\Operations\Console\Commands\RunMonitoring;
 use FreshCart\Operations\Listeners\ProductInventoryObserver;
 use FreshCart\Operations\Services\ApprovalService;
@@ -63,6 +64,7 @@ class OperationsServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
+                InstallRoles::class,
                 RunMonitoring::class,
             ]);
         }
