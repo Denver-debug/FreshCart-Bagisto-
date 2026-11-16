@@ -1,0 +1,7 @@
+# SITE_ADDRESS comes from docker-compose.prod.yml (defaults to ":80").
+# When it is a domain name, Caddy fetches and renews a Let's Encrypt
+# certificate automatically and redirects HTTP to HTTPS.
+{$SITE_ADDRESS::80} {
+	encode zstd gzip
+	reverse_proxy nginx:80
+}

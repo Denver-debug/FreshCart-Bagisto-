@@ -42,3 +42,8 @@ skills-lock.json
 /vendor
 yarn.lock
 yarn-error.log
+
+# AWS migration files (database dump, exported media)
+/backup.sql
+/storage-public/
+/storage-public.tgz
