@@ -174,8 +174,9 @@ Tests run inside database transactions on the configured database and roll back.
 
 ## Known limitations
 
-* **Integrations not implemented:** LDAP/Active Directory, OrangeHRM, ERPNext Procurement, Microsoft 365. There are no
-  connectors for them in this repository. Bagisto admin users and FreshCart suppliers are maintained locally.
+* **Integrations:** Akaunting (sales, procurement, payroll postings) and NovaCore HR / Frappe HR (employees → admin
+  users, payroll runs) are connected through the separate `FreshCart\Integrations` package (see its README). LDAP/Active Directory
+  and Microsoft 365 are not implemented.
 * **E-mail:** in-system notifications are always stored. E-mail is sent only when enabled under Configure → Operations
   and Bagisto mail is configured. Delivery was not tested against a real mail server.
 * **Branch sales** only cover online orders, attributed by the shipment's inventory source. In-store POS sales do not

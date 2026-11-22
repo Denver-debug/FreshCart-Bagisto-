@@ -107,13 +107,15 @@
             "Webkul\\Tax\\": "packages/Webkul/Tax/src",
             "Webkul\\Theme\\": "packages/Webkul/Theme/src",
             "Webkul\\User\\": "packages/Webkul/User/src",
-            "FreshCart\\Operations\\": "packages/FreshCart/Operations/src"
+            "FreshCart\\Operations\\": "packages/FreshCart/Operations/src",
+            "FreshCart\\Integrations\\": "packages/FreshCart/Integrations/src"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
             "FreshCart\\Operations\\Tests\\": "packages/FreshCart/Operations/tests",
+            "FreshCart\\Integrations\\Tests\\": "packages/FreshCart/Integrations/tests",
             "Webkul\\Admin\\Tests\\": "packages/Webkul/Admin/tests",
             "Webkul\\Core\\Tests\\": "packages/Webkul/Core/tests",
             "Webkul\\Customer\\Tests\\": "packages/Webkul/Customer/tests",
