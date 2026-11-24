@@ -13,6 +13,8 @@ use Throwable;
  */
 class OutboxProcessor
 {
+    const STALE_MINUTES = 10;
+
     public function __construct(
         protected AkauntingClient $akaunting,
         protected AkauntingSync $akauntingSync,
@@ -29,7 +31,7 @@ class OutboxProcessor
             return $result;
         }
 
-        $messages = OutboxMessage::whereIn('status', [OutboxMessage::STATUS_PENDING, OutboxMessage::STATUS_FAILED])
+        $messages = OutboxMessage::where(fn ($query) => self::claimable($query))
             ->where('attempts', '<', config('freshcart-integrations.outbox.max_attempts'))
             ->where(fn ($query) => $query->whereNull('available_at')->orWhere('available_at', '<=', now()))
             ->orderBy('id')
@@ -49,12 +51,18 @@ class OutboxProcessor
          * Claim the row so two overlapping runs never push it twice.
          */
         $claimed = OutboxMessage::whereKey($message->id)
-            ->whereIn('status', [OutboxMessage::STATUS_PENDING, OutboxMessage::STATUS_FAILED])
+            ->where(fn ($query) => self::claimable($query))
             ->update(['status' => OutboxMessage::STATUS_PROCESSING]);
 
         if (! $claimed) {
             return false;
         }
+
+        /**
+         * Sync the in-memory status with the claim, otherwise writing "failed"
+         * back onto a row loaded as "failed" is not dirty and is never saved.
+         */
+        $message->refresh();
 
         try {
             if (! $this->akauntingSync->handles($message->action)) {
@@ -87,5 +95,16 @@ class OutboxProcessor
 
             return false;
         }
+    }
+
+    /**
+     * Pending and failed rows, plus rows left in "processing" by a run that
+     * died mid-push (deploy, fatal error), so they are not stuck forever.
+     */
+    public static function claimable($query)
+    {
+        return $query->whereIn('status', [OutboxMessage::STATUS_PENDING, OutboxMessage::STATUS_FAILED])
+            ->orWhere(fn ($query) => $query->where('status', OutboxMessage::STATUS_PROCESSING)
+                ->where('updated_at', '<', now()->subMinutes(self::STALE_MINUTES)));
     }
 }
