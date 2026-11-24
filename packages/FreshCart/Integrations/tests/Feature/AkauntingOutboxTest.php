@@ -27,9 +27,10 @@ function fakeAkaunting(): void
     $id = 100;
 
     Http::fake([
-        'akaunting.test/api/contacts?*' => Http::response(['data' => []]),
-        'akaunting.test/api/*' => function () use (&$id) {
-            return Http::response(['data' => ['id' => ++$id]], 201);
+        'akaunting.test/api/*' => function (Request $request) use (&$id) {
+            return $request->method() === 'GET'
+                ? Http::response(['data' => []])
+                : Http::response(['data' => ['id' => ++$id]], 201);
         },
     ]);
 }
@@ -100,6 +101,13 @@ it('queues suppliers and pushes them to Akaunting as vendors, updating on edit',
 
     expect($vendorId)->not->toBeNull()
         ->and(akauntingRequests('POST', 'contacts')[0])->toMatchArray(['type' => 'vendor', 'name' => 'Mindoro Farms', 'reference' => $this->supplier->code]);
+
+    /**
+     * Akaunting reads the permission from ?search=type:… and answers 403 without it.
+     */
+    Http::assertSent(fn (Request $request) => $request->method() === 'POST'
+        && str_ends_with(parse_url($request->url(), PHP_URL_PATH), '/api/contacts')
+        && parse_url($request->url(), PHP_URL_QUERY) === 'search=type:vendor');
 
     $this->supplier->update(['name' => 'Mindoro Farms Co-op']);
 
@@ -214,9 +222,34 @@ it('keeps failures in the outbox with backoff instead of breaking the business t
         ->and($message->last_error)->toContain('HTTP 500')
         ->and($message->available_at->isFuture())->toBeTrue();
 
+    $message->update(['available_at' => now()]);
+
+    app(OutboxProcessor::class)->run();
+
+    expect($message->fresh()->status)->toBe('failed')
+        ->and($message->fresh()->attempts)->toBe(2);
+
     artisan('fc:integrations:retry')->assertSuccessful();
 
     expect($message->fresh()->status)->toBe('pending');
+});
+
+it('reclaims messages left in processing by a run that died', function () {
+    Http::fake(['akaunting.test/*' => Http::response(['message' => 'Server error'], 500)]);
+
+    $message = OutboxMessage::where('action', 'akaunting.vendor')->first();
+
+    OutboxMessage::whereKey($message->id)->toBase()->update(['status' => 'processing', 'updated_at' => now()->subMinutes(5)]);
+
+    app(OutboxProcessor::class)->run();
+
+    expect($message->fresh()->status)->toBe('processing');
+
+    OutboxMessage::whereKey($message->id)->toBase()->update(['updated_at' => now()->subMinutes(11)]);
+
+    app(OutboxProcessor::class)->run();
+
+    expect($message->fresh()->status)->toBe('failed');
 });
 
 it('leaves messages queued while Akaunting is not configured', function () {

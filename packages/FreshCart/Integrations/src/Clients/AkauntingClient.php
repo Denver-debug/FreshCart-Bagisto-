@@ -66,13 +66,34 @@ class AkauntingClient
     {
         $response = $method === 'GET'
             ? $this->request()->get($path, $data)
-            : $this->request()->send($method, $path, ['json' => $data]);
+            : $this->request()->send($method, $this->typedPath($path, $data), ['json' => $data]);
 
         if ($response->failed()) {
             throw IntegrationException::fromResponse('Akaunting', $method, $path, $response);
         }
 
         return $response->json() ?? [];
+    }
+
+    /**
+     * Akaunting derives the permission of its contacts and documents endpoints
+     * only from ?search=type:… in the URL, never from the body. Without it the
+     * permission name is empty and every write is refused with 403, even for
+     * admins. Payments on a document need the type of the invoice or bill.
+     */
+    protected function typedPath(string $path, array $data): string
+    {
+        $type = $data['type'] ?? null;
+
+        if (! $type || ! in_array(strtok($path, '/'), ['contacts', 'documents'])) {
+            return $path;
+        }
+
+        if (str_ends_with($path, '/transactions')) {
+            $type = ['income' => 'invoice', 'expense' => 'bill'][$type] ?? $type;
+        }
+
+        return "{$path}?search=type:{$type}";
     }
 
     protected function request(): PendingRequest

@@ -144,9 +144,10 @@ it('skips employees without an e-mail address', function () {
 it('posts a released payroll run to Akaunting as net pay plus remittance bills', function () {
     $id = 500;
     Http::fake([
-        'akaunting.test/api/contacts?*' => Http::response(['data' => []]),
-        'akaunting.test/api/*' => function () use (&$id) {
-            return Http::response(['data' => ['id' => ++$id]], 201);
+        'akaunting.test/api/*' => function (Request $request) use (&$id) {
+            return $request->method() === 'GET'
+                ? Http::response(['data' => []])
+                : Http::response(['data' => ['id' => ++$id]], 201);
         },
     ]);
 
@@ -155,7 +156,7 @@ it('posts a released payroll run to Akaunting as net pay plus remittance bills',
 
     app(OutboxProcessor::class)->run();
 
-    $posted = fn (string $path) => Http::recorded(fn (Request $request) => $request->method() === 'POST' && str_ends_with($request->url(), '/api/'.$path))
+    $posted = fn (string $path) => Http::recorded(fn (Request $request) => $request->method() === 'POST' && str_ends_with(parse_url($request->url(), PHP_URL_PATH), '/api/'.$path))
         ->map(fn ($pair) => $pair[0]->data())->values();
 
     $net = $posted('transactions')->sole();
